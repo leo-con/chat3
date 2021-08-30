@@ -1,0 +1,16 @@
+function btnAtencionEnLinea() {
+  if (isMobile) {
+    window.open("https://asistentevirtual.davivienda.com/", "_blank");
+  } else {
+    var browser = get_browser_info();
+    if (navigator.userAgent.indexOf("MSIE") != -1) {
+      if (parseInt(browser.version) <= 9) {
+        window.open("/wps/portal/empresas/nuevo/Atencionenlinea", "_blank");
+      } else if (parseInt(browser.version) > 9) {
+        showChatbot();
+      }
+    } else {
+      showChatbot();
+    }
+  }
+}

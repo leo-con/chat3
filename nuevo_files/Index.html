@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<!-- saved from url=(0082)https://s0.2mdn.net/dfp/576370/46539010/1504627918063/Bienvenida_Banner/Index.html -->
+<html lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script type="text/javascript">
+    
+      (function() {
+        var relegateNavigation = '';
+        var handleClickTagMessage = function(e) {
+          try {
+            var eventData = JSON.parse(e.data);
+          } catch (err) {
+            return;
+          }
+          if (eventData.isInitClickTag) {
+            if (eventData.clickTags) {
+              for (var i = 0; i < eventData.clickTags.length; i++) {
+                var clkTag = eventData.clickTags[i];
+                window[clkTag.name] = clkTag.url;
+              }
+            } else if (eventData.clickTag) {
+              window.clickTag = eventData.clickTag;
+            }
+            relegateNavigation = eventData.relegateNavigation;
+          }
+        };
+
+        if (open.call) {
+          window.open = function(open) {
+            return function(url, name, features) {
+              if (relegateNavigation === 'parent') {
+                var message = {'clickTag': url, 'isPostClickTag': true};
+                parent.postMessage(JSON.stringify(message), '*');
+              } else {
+                var args = [url, name];
+                if (features) {
+                  args.push(features);
+                }
+                open.apply(window, args);
+              }
+            };
+          }(window.open);
+        }
+
+        if (window.addEventListener) {
+          window.addEventListener(
+              'message', handleClickTagMessage, false);
+        } else {
+          window.attachEvent('onmessage', handleClickTagMessage);
+        }
+      })();
+    
+  </script>
+  
+<style>
+body, html {
+    height: 100%;
+    margin: 0;
+}
+
+@font-face {
+	font-family: 'Helvetica Neue LT Std';
+	src: url('HelveticaNeueLTStd-Cn.eot');
+	src: url('HelveticaNeueLTStd-Cn.eot?#iefix') format('embedded-opentype'),
+		url('HelveticaNeueLTStd-Cn.woff2') format('woff2'),
+		url('HelveticaNeueLTStd-Cn.woff') format('woff'),
+		url('HelveticaNeueLTStd-Cn.ttf') format('truetype'),
+		url('HelveticaNeueLTStd-Cn.svg#HelveticaNeueLTStd-Cn') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Helvetica Neue LT Std';
+	src: url('HelveticaNeueLTStd-LtCn.eot');
+	src: url('HelveticaNeueLTStd-LtCn.eot?#iefix') format('embedded-opentype'),
+		url('HelveticaNeueLTStd-LtCn.woff2') format('woff2'),
+		url('HelveticaNeueLTStd-LtCn.woff') format('woff'),
+		url('HelveticaNeueLTStd-LtCn.ttf') format('truetype'),
+		url('HelveticaNeueLTStd-LtCn.svg#HelveticaNeueLTStd-LtCn') format('svg');
+  	font-weight: 300;
+  	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Helvetica Neue LT Std';
+	src: url('HelveticaNeueLTStd-BdCn.eot');
+	src: url('HelveticaNeueLTStd-BdCn.eot?#iefix') format('embedded-opentype'),
+		url('HelveticaNeueLTStd-BdCn.woff2') format('woff2'),
+		url('HelveticaNeueLTStd-BdCn.woff') format('woff'),
+		url('HelveticaNeueLTStd-BdCn.ttf') format('truetype'),
+		url('HelveticaNeueLTStd-BdCn.svg#HelveticaNeueLTStd-BdCn') format('svg');
+	font-weight: bold;
+	font-style: normal;
+}
+
+.bg {
+    /* The image used */
+    background-image:url(Imagenes/experiencia.jpg);
+
+    /* Full height */
+    height: 100%;
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.textlegales{
+	font-family:Helvetica Neue LT Std, Arial, sans-serif;
+	font-weight:100;
+	font-size:0.8em;
+	letter-spacing:0px;
+	color:#ffffff;
+  padding-right: 20px !important;
+}
+
+.enunciado{
+	font-family:Helvetica Neue LT Std, Arial, sans-serif;
+	font-weight:300;
+	font-size:3em;
+	letter-spacing:-2px;
+	text-shadow: 0 1px 2px rgba(0,0,0,.4);
+	color:#FFFFFF;
+	line-height:90%;
+	}
+
+.destacado{
+	font-family:Helvetica Neue LT Std, HelveticaNeueBold, Arial, sans-serif;
+	font-weight:bold;
+	letter-spacing:-4px;
+	font-size:5em;
+	text-shadow: 0 1px 2px rgba(0,0,0,.4);
+	color:#FFFFFF;
+	line-height:90%;
+	}
+
+p {
+	margin:0px;
+	padding:0px;
+	}
+
+#text1{
+	width: 68%;
+	height: auto;
+	margin: 0% 0% 0% 0%;
+	}
+
+#text2{
+	width: 68%;
+	height: auto;
+	margin: 0% 0% 0% 0%;
+	}
+
+
+#btn{
+	position: relative;
+	padding:1% 0% 0% 0%;
+	width:165px;
+	height:62px;
+	background-image:url(Imagenes/btn.png);
+	background-repeat:no-repeat;
+	background-position:left 20px;
+	z-index: 2;
+
+	}
+
+#btn:hover{
+	position: relative;
+	padding:1% 0% 0% 0%;
+	width:165px;
+	height:62px;
+	background-image:url(Imagenes/btn_rollover.png);
+	background-repeat:no-repeat;
+	background-position:left 20px;
+	cursor:pointer;
+	z-index: 2;
+	}
+
+#legales{
+	margin: 5% 0% 0% 0%;
+}
+
+#content{
+	padding: 0% 0% 0% 6%;
+  display: table-cell;
+    vertical-align: middle;
+    text-decoration: none !important;
+}
+.text-content{
+  display: table;
+  width: 100%;
+    height: 100%;
+}
+@media (min-width:800px) {
+  .textlegales{
+    width: 50%;
+
+  }
+
+}
+@media (max-height:640px) {
+  .bg {
+    background-position:  bottom center;
+}
+}
+
+@media (max-height:800px) {
+  .bg {
+    background-position:  bottom center;
+}
+
+}
+#content a{
+  text-decoration: none !important;
+}
+.click{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+}
+
+</style>
+<script type="text/javascript">
+  var clickTag = "http://www.beneficiosdavivienda.com/bienvenidos-a-davivienda/";
+</script>
+
+</head>
+<body>
+<a href="javascript:window.open(window.clickTag)">
+  <img class="click" src="./click-tag.png" alt="">
+</a><div class="bg"><a href="javascript:window.open(window.clickTag)">
+  </a><div class="text-content"><a href="javascript:window.open(window.clickTag)">
+  	</a><div id="content"><a href="javascript:window.open(window.clickTag)">
+  		<div id="text1"><p class="enunciado">Viva una experiencia digital en</p></div><!--Text-->
+  		<div id="text2"> <p class="destacado">www.davivienda.com</p></div><!--Text-->
+  		</a><a href="http://www.beneficiosdavivienda.com/bienvenidos-a-davivienda/" target="_blank"><div id="btn"></div></a><!--Text-->
+  		<!-- <div id="legales"><p class="textlegales">DaviPlata es un depósito de dinero electrónico amparado por el seguro de depósito de Fogafín. <br>
+  Para usar la tecla de la casita roja debe tener activo el App DaviPlata. <br> La plata se pasa usando la tecla de la casita roja en el teclado de su celular. <br>
+  Consulte condiciones, reglamento, tarifas y más información en www.daviplata.com<p></div><!legales-->
+  		</div><!--content-->
+  </div>
+
+</div><!--Bg-->
+  
+
+
+
+
+
+
+</body></html>
