@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+  <head>
+
+    <script type="text/javascript" charset="utf-8">
+      (function (g, e, n, es, ys) {
+        g['_genesysJs'] = e;
+        g[e] = g[e] || function () {
+          (g[e].q = g[e].q || []).push(arguments)
+        };
+        g[e].t = 1 * new Date();
+        g[e].c = es;
+        ys = document.createElement('script'); ys.async = 1; ys.src = n; ys.charset = 'utf-8'; document.head.appendChild(ys);
+      })(window, 'Genesys', 'https://apps.mypurecloud.com/genesys-bootstrap/genesys.min.js', {
+        environment: 'use1',
+        deploymentId: 'af5f8e01-a262-4c16-aa04-cdb544818d95'
+      });
+
+      Genesys("subscribe", "Launcher.ready", function(o){
+        var boton = document.getElementById("toggle");
+        boton.className = "toggleVisible";
+      });
+
+      Genesys("subscribe", "Conversations.started", function(o){
+        console.log("******* Conversations.started*******"); enviarAParent("Conversations.started"); });
+      Genesys("subscribe", "Conversations.messageAdded", function(o){ 
+        console.log("*******Conversations.messageAdded*******"); enviarAParent("Conversations.messageAdded"); console.log(o);});
+      Genesys("subscribe", "MessagingService.messagesReceived", function(o){ 
+        console.log("*******MessagingService.messagesReceived*******"); enviarAParent("MessagingService.messagesReceived"); });
+
+      function ToggleWidget(){
+
+          var boton = document.getElementById("toggle");
+          if (boton.innerHTML == "Mostrar Chat") {
+            Genesys("command", "Messenger.open", {},
+            function(o){},
+            );
+            boton.innerHTML = "Ocultar Chat";
+
+          }
+          else{
+              Genesys("command", "Messenger.close", {},
+              function(o){},
+              );
+              boton.innerHTML = "Mostrar Chat";
+          }
+
+        }
+
+        function enviarAParent(msgEnviar){
+          if ( window.location !== window.parent.location ) {
+            parent.postMessage(msgEnviar);
+          } else {
+            // The page is not in an iframe
+          }
+        }
+</script>
+
+<style>
+  .toggleOculto{
+    display: none;
+  }
+  .toggleVisible{
+    display:block;
+  }
+
+  .div1{
+    padding-top: 1%;
+    padding-bottom: 1%;
+    padding-left: 1%;
+  }
+</style>
+      <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>ethack - The Ethical Hacking Company</title>
+  </head>
+  <body>
+    <!-- Messenger Snipp Start -->
+
+    <!-- Messenger Snipp End -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="">ethack</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+         <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+              <a class="nav-link" href="">Contact</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="">Services</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="">About Us</a>
+          </li>
+      </ul>
+      </div>
+  </nav>
+<div class="div1"> 
+  <button id="toggle" class="toggleOculto" onclick="ToggleWidget()">Mostrar Chat</button>
+</div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>
